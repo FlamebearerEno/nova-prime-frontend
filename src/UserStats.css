@@ -1,0 +1,112 @@
+.user-stats {
+  background: rgba(0, 0, 0, 0.6);
+  border: 2px solid transparent;
+  border-image: linear-gradient(90deg, #ff00ff, #00ffff, #00f0ff) 1;
+  border-radius: 12px;
+  padding: 16px;
+  font-family: 'Orbitron', sans-serif;
+  box-shadow: 0 0 16px rgba(255, 0, 255, 0.3);
+  width: 100%;
+  color: white;
+}
+
+.user-stats-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.user-stats-header h2 {
+  margin: 0;
+  font-size: 1.4rem;
+  background: linear-gradient(90deg, #00f0ff, #00ffff, #ff00ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  font-weight: bold;
+}
+
+.username-input-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.username-input-group input {
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #00ffff;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+}
+
+.username-input-group button {
+  padding: 5px 12px;
+  border: none;
+  border-radius: 4px;
+  background: linear-gradient(90deg, #ff00ff, #00ffff);
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: opacity 0.2s ease;
+}
+
+.username-input-group button:hover {
+  opacity: 0.8;
+}
+
+.username-display {
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #00f0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 0.95rem;
+  margin-left: 0px;
+}
+
+.user-stats p strong {
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff00ff, #00ffff, #00f0ff);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+}
+
+.xp-bar {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  height: 14px;
+  margin: 8px 0;
+  overflow: hidden;
+}
+
+.xp-bar-inner {
+  height: 100%;
+  background: linear-gradient(90deg, #00ffff, #ff00ff, #00f0ff);
+  width: 0%;
+  transition: width 0.5s ease;
+  box-shadow: 0 0 8px rgba(0, 255, 255, 0.6);
+}
+
+.error {
+  color: #ff4c4c;
+  font-size: 12px;
+  margin-top: 8px;
+}
+.title-select {
+  margin-left: 10px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #00ffff;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+}
+
+.title-select option {
+  background: #000;
+  color: #00ffff;
+}

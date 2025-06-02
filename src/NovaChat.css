@@ -1,0 +1,15 @@
+import React from 'react';
+import ChetChat from './ChetChat';
+import './NovaChat.css';
+
+const NovaChat = () => (
+  <div className="nova-chat">
+    <h2>Chat with Your Chet</h2>
+    <ChetChat />
+
+    <h3>Global Chat</h3>
+    <p>(Global messages go here)</p>
+  </div>
+);
+
+export default NovaChat;

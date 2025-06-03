@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import './DailyQuests.css';
 
-const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com'; 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com';
 
-const DailyQuests = ({ fetchStats }) => { // Accept fetchStats as a prop
+const DailyQuests = ({ fetchStats }) => {
   const [quests, setQuests] = useState([]);
 
   useEffect(() => {
     const fetchQuests = async () => {
-      const auth = getAuth();
-      const user = auth.currentUser;
-      if (!user) {
-        console.error('No user signed in');
-        return;
-      }
-
-      const token = await user.getIdToken();
-      console.log("📡 Fetching /daily_quests with token:", token.slice(0, 10) + "...");
-
       try {
+        const auth = getAuth();
+        const user = auth.currentUser;
+        if (!user) {
+          console.error('No user signed in');
+          return;
+        }
+
+        const token = await user.getIdToken(true);
+        console.log("📡 Fetching /daily_quests with token:", token.slice(0, 10) + "...");
+
         const res = await fetch(`${BACKEND_URL}/daily_quests`, {
           headers: { Authorization: `Bearer ${token}` },
         });
@@ -39,56 +39,49 @@ const DailyQuests = ({ fetchStats }) => { // Accept fetchStats as a prop
     };
 
     fetchQuests();
-  }, []);
+  }, [fetchStats]);
 
-const markComplete = async (index) => {
-  const auth = getAuth();
-  const user = auth.currentUser;
-  if (!user) return;
-
-  const token = await user.getIdToken();
-  const quest = quests[index];
-
-  if (!quest.completed) {
+  const markComplete = async (index) => {
     try {
-      const res = await fetch(`${BACKEND_URL}/complete_quest`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ questId: quest.id, memoryShards: quest.memoryShards }),
-      });
+      const auth = getAuth();
+      const user = auth.currentUser;
+      if (!user) {
+        console.error('No user signed in');
+        return;
+      }
 
-      const data = await res.json();
+      const token = await user.getIdToken(true);
+      const quest = quests[index];
 
-      if (data && data.message === 'Quest completed.') {
-        const updatedQuests = [...quests];
-        updatedQuests[index].completed = true;
-        setQuests(updatedQuests);
-        console.log('✅ Quest marked as complete!');
-
-        // 🔥 Fetch updated user stats after quest completion
-        const statsRes = await fetch(`${BACKEND_URL}/logs`, {
-          headers: { Authorization: `Bearer ${token}` },
+      if (!quest.completed) {
+        const res = await fetch(`${BACKEND_URL}/complete_quest`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ questId: quest.id, memoryShards: quest.memoryShards }),
         });
-        const statsData = await statsRes.json();
-        console.log("🌌 Refreshed User Stats:", statsData.user_stats);
 
-        // You could optionally lift `user_stats` state up or pass via props
-        // For now, you can console log or trigger any UI update here
-        if (typeof fetchStats === 'function') {
-          fetchStats();
+        const data = await res.json();
+
+        if (res.ok && data.message === 'Quest completed.') {
+          const updatedQuests = [...quests];
+          updatedQuests[index].completed = true;
+          setQuests(updatedQuests);
+          console.log('✅ Quest marked as complete!');
+
+          if (typeof fetchStats === 'function') {
+            fetchStats();
+          }
+        } else {
+          console.error('❌ Unexpected completion response:', data);
         }
-
-      } else {
-        console.error('❌ Unexpected completion response:', data);
       }
     } catch (err) {
       console.error('Error completing quest:', err);
     }
-  }
-};
+  };
 
   return (
     <div className="daily-quests">
@@ -99,7 +92,7 @@ const markComplete = async (index) => {
             <div className="quest-info">
               <strong>{quest.title}</strong><br />
               {quest.description}<br />
-              <span className="bonus-xp">+{quest.memoryShards} Memory Shard{quest.memoryShards > 1 ? 's' : ''}</span>
+              <span className="bonus-xp">+{quest.memoryShards} Memory Shard{quest.memoryShards !== 1 ? 's' : ''}</span>
             </div>
             <div className="quest-action">
               {!quest.completed ? (

@@ -1,8 +1,9 @@
+// ChetChat.js
 import React, { useState, useEffect, useRef } from 'react';
 import { auth } from './firebase';
 import './chat.css';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com';
 
 const ChetChat = () => {
   const [messages, setMessages] = useState([]);
@@ -17,10 +18,11 @@ const ChetChat = () => {
 
     try {
       const token = await user.getIdToken(true);
-      const res = await fetch(`${backendUrl}/logs`, {
+      const res = await fetch(`${BACKEND_URL}/logs`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
+      if (!res.ok) throw new Error('Failed to fetch logs');
       const data = await res.json();
       setUserStats(data.user_stats || {});
       setMessages(data.bonded_memory?.memory || []);
@@ -40,22 +42,20 @@ const ChetChat = () => {
     }
   }, [messages]);
 
-  const countTokens = (text) => {
-    return text.trim().split(/\s+/).length; // Simple token count
-  };
+  const countTokens = (text) => text.trim().split(/\s+/).length;
 
   const sendMessage = async () => {
     const user = auth.currentUser;
     if (!user || !prompt.trim()) return;
 
     const token = await user.getIdToken(true);
-    const newMessage = { role: 'user', content: prompt };
+    const userMessage = { role: 'user', content: prompt };
 
-    setMessages(prev => [...prev, newMessage]);
+    setMessages((prev) => [...prev, userMessage]);
     setPrompt('');
 
     try {
-      const res = await fetch(`${backendUrl}/chat`, {
+      const res = await fetch(`${BACKEND_URL}/chat`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
@@ -64,30 +64,27 @@ const ChetChat = () => {
         body: JSON.stringify({ prompt }),
       });
 
+      if (!res.ok) throw new Error('Failed to send message');
       const data = await res.json();
-      const aiContent = data.response;
-      const assistantMessage = { role: 'assistant', content: aiContent };
+      const aiMessage = { role: 'assistant', content: data.response };
 
-      setMessages(prev => [...prev, assistantMessage]);
+      setMessages((prev) => [...prev, aiMessage]);
 
-      // 🌌 Count tokens and sync XP
-      const tokenCount = countTokens(aiContent);
+      const tokenCount = countTokens(data.response);
       console.log(`🌌 Tokens generated: ${tokenCount}`);
 
-      await fetch(`${backendUrl}/llm_response`, {
+      const xpRes = await fetch(`${BACKEND_URL}/llm_response`, {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${token}`,
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ message: aiContent, tokensGenerated: tokenCount }),
-      })
-        .then((res) => res.json())
-        .then((data) => {
-          console.log('🌌 XP Sync Response:', data);
-          fetchStats(); // 🌠 Refresh stats after each response
-        })
-        .catch((err) => console.error('Error syncing XP:', err));
+        body: JSON.stringify({ message: data.response, tokensGenerated: tokenCount }),
+      });
+
+      const xpData = await xpRes.json();
+      console.log('🌌 XP Sync Response:', xpData);
+      fetchStats();
     } catch (err) {
       console.error('Error sending message:', err);
       setError('Error sending message. Please try again.');

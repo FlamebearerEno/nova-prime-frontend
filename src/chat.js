@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { auth } from './firebase'; // Ensure you have Firebase Auth configured
 import './chat.css';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000';
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com';
 
 function Chat() {
   const [messages, setMessages] = useState([]);
@@ -19,7 +19,7 @@ function Chat() {
 
     try {
       const token = await user.getIdToken(true);
-      const res = await fetch(`${backendUrl}/logs`, {
+      const res = await fetch(`${BACKEND_URL}/logs`, { 
         headers: { Authorization: `Bearer ${token}` },
       });
       if (!res.ok) throw new Error('Failed to fetch data.');
@@ -74,7 +74,7 @@ function Chat() {
     if (!user) return;
     try {
       const token = await user.getIdToken(true);
-      await fetch(`${backendUrl}/backupBondedMemory`, {
+      await fetch(`${BACKEND_URL}/backupBondedMemory`, {
         method: 'POST',
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -97,7 +97,7 @@ function Chat() {
     }
     try {
       const token = await user.getIdToken(true);
-      const res = await fetch(`${backendUrl}/chat`, {
+      const res = await fetch(`${BACKEND_URL}/chat`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -162,7 +162,7 @@ function Chat() {
         ))}
       </div>
 
-      <form onSubmit={handleChat}>
+      <form onSubmit={handleChat}>n
         <input
           type="text"
           placeholder="Type your message..."

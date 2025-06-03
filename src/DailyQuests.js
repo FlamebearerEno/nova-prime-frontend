@@ -54,7 +54,7 @@ const DailyQuests = ({ fetchStats }) => {
       const quest = quests[index];
 
       if (!quest.completed) {
-        const res = await fetch(`${BACKEND_URL}/complete_quest`, {
+        const res = await fetch(`${BACKEND_URL}/daily_quests/complete_quest`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',

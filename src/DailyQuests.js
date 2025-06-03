@@ -54,14 +54,14 @@ const DailyQuests = ({ fetchStats }) => {
       const quest = quests[index];
 
       if (!quest.completed) {
-        const res = await fetch(`${BACKEND_URL}/daily_quests/complete_quest`, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
-          },
-          body: JSON.stringify({ questId: quest.id, memoryShards: quest.memoryShards }),
-        });
+        const res = await fetch(`${BACKEND_URL}/complete_quest`, {
+  		method: 'POST',
+ 		 headers: {
+  	 	 'Content-Type': 'application/json',
+   	 	Authorization: `Bearer ${token}`,
+  		},
+  		body: JSON.stringify({ questId: quest.id, memoryShards: quest.memoryShards }),
+		});
 
         const data = await res.json();
 

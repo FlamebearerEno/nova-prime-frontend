@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getAuth } from 'firebase/auth';
 import './DailyQuests.css';
 
-const BACKEND_URL = 'https://nova-prime-backend-v2.onrender.com'; 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com'; 
 
 const DailyQuests = ({ fetchStats }) => { // Accept fetchStats as a prop
   const [quests, setQuests] = useState([]);

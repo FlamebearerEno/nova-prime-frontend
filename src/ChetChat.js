@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { auth } from './firebase';
 import './chat.css';
 
-const backendUrl = process.env.REACT_APP_BACKEND_URL || 'http://localhost:3000';
+const backendUrl = process.env.REACT_APP_BACKEND_URL || 'https://nova-prime-backend-v2.onrender.com';
 
 const ChetChat = () => {
   const [messages, setMessages] = useState([]);

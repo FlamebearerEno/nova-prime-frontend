@@ -16,7 +16,7 @@ function SignUp() {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       console.log('✅ User signed up:', userCredential.user);
       setError('');
-      navigate('/login'); // Redirect after sign-up
+      navigate('/'); // Correct path for login screen
     } catch (err) {
       console.error('Sign-up error:', err);
       setError(err.message);

@@ -1,4 +1,3 @@
-// ChetChat.js
 import React, { useState, useEffect, useRef } from 'react';
 import { auth } from './firebase';
 import './chat.css';
@@ -25,7 +24,7 @@ const ChetChat = () => {
       if (!res.ok) throw new Error('Failed to fetch logs');
       const data = await res.json();
       setUserStats(data.user_stats || {});
-      setMessages(data.bonded_memory?.memory || []);
+      setMessages(data.bonded_memory?.memory.slice(-20) || []);
     } catch (err) {
       console.error('Error fetching stats:', err);
       setError('Error fetching data. Please try again.');
@@ -42,7 +41,7 @@ const ChetChat = () => {
     }
   }, [messages]);
 
-  const countTokens = (text) => text.trim().split(/\s+/).length;
+  const countTokens = (text) => text.trim().split(/\\s+/).length;
 
   const sendMessage = async () => {
     const user = auth.currentUser;
@@ -84,7 +83,7 @@ const ChetChat = () => {
 
       const xpData = await xpRes.json();
       console.log('🌌 XP Sync Response:', xpData);
-      fetchStats();
+      if (xpData.stats) setUserStats(xpData.stats); // only update stats
     } catch (err) {
       console.error('Error sending message:', err);
       setError('Error sending message. Please try again.');

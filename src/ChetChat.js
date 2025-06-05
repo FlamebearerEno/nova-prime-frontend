@@ -65,7 +65,7 @@ const ChetChat = () => {
 
       if (!res.ok) throw new Error('Failed to send message');
       const data = await res.json();
-      const aiMessage = { role: 'assistant', content: data.response.trim() };
+      const aiMessage = { role: 'assistant', content: data.response.trim().replace(/\\n/g, '\n') };
 
       setMessages((prev) => [...prev, aiMessage]);
 

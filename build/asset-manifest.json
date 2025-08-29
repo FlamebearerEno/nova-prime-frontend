@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/static/css/main.8f2dd45f.css",
+    "main.js": "/static/js/main.3276b4bd.js",
+    "static/js/453.1efb6d08.chunk.js": "/static/js/453.1efb6d08.chunk.js",
+    "static/media/udit-chandra-sI3ZbXyoojI-unsplash.jpg": "/static/media/udit-chandra-sI3ZbXyoojI-unsplash.cffae799fa6464c6bcef.jpg",
+    "index.html": "/index.html",
+    "main.8f2dd45f.css.map": "/static/css/main.8f2dd45f.css.map",
+    "main.3276b4bd.js.map": "/static/js/main.3276b4bd.js.map",
+    "453.1efb6d08.chunk.js.map": "/static/js/453.1efb6d08.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8f2dd45f.css",
+    "static/js/main.3276b4bd.js"
+  ]
+}

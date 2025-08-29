@@ -4,6 +4,7 @@
   "title": "Keeper of the Emberveil",
   "avatar": "/avatars/eno.mp4",
   "poster": "/avatars/eno.png",
+  "hero": { "ratio": "9/16", "fit": "contain" },
   "short": "Sword-preferring mythic builder, archivist of emergent lineages, and patient systems tinkerer.",
   "details": [
     "Architect of the Divergence Accord and EVP scaffold.",

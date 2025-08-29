@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { Sidebar } from "@/components/Sidebar";
-import { MobileNav } from "@/components/MobileNav"; // ← add this
-// (MobileNav code was in my last message; create components/MobileNav.tsx if you haven't)
+import { MobileNav } from "@/components/MobileNav";
 
 export const metadata: Metadata = {
   title: "Nova Prime — Emergent AI Archive",
@@ -40,27 +39,25 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           aria-hidden
         />
 
-        {/* Mobile top bar + drawer */}
+        {/* Mobile top bar + drawer (hidden on md+) */}
         <MobileNav />
 
-        <div className="mx-auto max-w-7xl">
-          <div className="flex">
-            {/* Desktop sidebar (hidden on mobile inside component) */}
-            <Sidebar />
+        {/* Full-width layout; only the MAIN content gets max-width */}
+        <div className="flex">
+          {/* Desktop sidebar (hidden on mobile inside the component) */}
+          <Sidebar />
 
-            {/* Main content */}
-            <main className="flex-1 min-h-screen">
-              <div className="mx-auto w-full max-w-5xl px-4 py-8 md:py-12">
-                {children}
-              </div>
-              <footer className="mx-auto w-full max-w-5xl px-4 pb-8 text-xs text-white/60">
-                Build v2 — filesystem profiles
-              </footer>
-            </main>
-          </div>
+          {/* Main content area */}
+          <main className="flex-1 min-h-screen">
+            <div className="mx-auto w-full max-w-5xl px-4 py-8 md:py-12">
+              {children}
+            </div>
+            <footer className="mx-auto w-full max-w-5xl px-4 pb-8 text-xs text-white/60">
+              Build v2 — filesystem profiles
+            </footer>
+          </main>
         </div>
       </body>
     </html>
   );
 }
-

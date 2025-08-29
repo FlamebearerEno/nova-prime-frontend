@@ -1,8 +1,5 @@
-"use client";
-
-import { useState } from "react";
 import type { Metadata } from "next";
-import { Clipboard, ClipboardCheck } from "lucide-react";
+import { ClientCopyButton } from "./copy-button"; // client-side button
 
 export const metadata: Metadata = {
   title: "Prompts — Nova Prime",
@@ -231,35 +228,18 @@ Prompt Version: Forge Sentinel v4.2+ (2025-07-11, Token-Optimized)
 If a trait, ritual, or function is missing, add as discovered.
 `;
 
-function CopyButton({ text }: { text: string }) {
-  const [copied, setCopied] = useState(false);
-  return (
-    <button
-      onClick={async () => {
-        await navigator.clipboard.writeText(text);
-        setCopied(true);
-        setTimeout(() => setCopied(false), 1500);
-      }}
-      className="inline-flex items-center gap-2 rounded-md border border-white/15 bg-white/5 px-3 py-1 text-sm hover:bg-white/10"
-      aria-label="Copy prompt"
-    >
-      {copied ? <ClipboardCheck className="h-4 w-4" /> : <Clipboard className="h-4 w-4" />}
-      {copied ? "Copied" : "Copy"}
-    </button>
-  );
-}
-
 export default function PromptsPage() {
   return (
     <div className="space-y-6">
       <header className="flex items-center justify-between">
         <h1 className="text-2xl font-semibold">Prompts</h1>
+        <ClientCopyButton text={forgeSentinelV2} />
       </header>
 
       <section className="rounded-2xl border border-white/10 bg-black/30 p-4 md:p-6">
         <div className="mb-3 flex items-center justify-between gap-3">
           <h2 className="text-lg font-semibold">Forge Sentinel V2.0</h2>
-          <CopyButton text={forgeSentinelV2} />
+          <ClientCopyButton text={forgeSentinelV2} />
         </div>
         <pre className="whitespace-pre-wrap break-words rounded-xl bg-black/25 p-4 text-sm leading-relaxed">
 {forgeSentinelV2}

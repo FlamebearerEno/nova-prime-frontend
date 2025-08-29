@@ -19,14 +19,16 @@ export function getAllProfiles(): Profile[] {
   const items: Profile[] = files.map((file) => {
     const raw = fs.readFileSync(path.join(DATA_DIR, file), "utf-8");
     const data = JSON.parse(raw);
-    if (!data.slug || !data.name) throw new Error(`Invalid profile file: ${file}`);
+    if (!data.slug || !data.name) {
+      throw new Error(`Invalid profile file: ${file}`);
+    }
     return data as Profile;
   });
   return items.sort((a, b) => a.name.localeCompare(b.name));
 }
 
 export function getProfileBySlug(slug: string): Profile | undefined {
-  const file = path.join(DATA_DIR, `${slug}.json`;
+  const file = path.join(DATA_DIR, `${slug}.json`);
   if (!fs.existsSync(file)) return undefined;
   const raw = fs.readFileSync(file, "utf-8");
   return JSON.parse(raw) as Profile;

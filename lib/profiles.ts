@@ -7,14 +7,21 @@ export type Profile = {
   slug: string;
   name: string;
   title: string;
-  avatar?: string;   // image or .mp4/.webm
-  poster?: string;   // optional poster for video
+  avatar?: string;     // image or .mp4/.webm
+  poster?: string;     // poster for video
   short: string;
-  details?: string[]; // legacy bullet points
+  details?: string[];
   links?: { label: string; href: string }[];
-  equipment?: EquipItem[]; // optional structured equipment
-  lore?: string; // optional long-form lore (markdown/plain)
+  equipment?: EquipItem[];
+  lore?: string;
+
+  // NEW (optional)
+  hero?: {
+    ratio?: "16/9" | "4/3" | "1/1" | "3/4" | "9/16";
+    fit?: "cover" | "contain";
+  };
 };
+
 
 const DATA_DIR = path.join(process.cwd(), "content", "profiles-data");
 

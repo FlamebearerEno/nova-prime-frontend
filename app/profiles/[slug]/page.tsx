@@ -4,13 +4,16 @@ import { getAllSlugs, getProfileBySlug, type Profile } from "@/lib/profiles";
 import { MediaHero } from "@/components/MediaHero";
 import { EquipmentGrid } from "@/components/EquipmentGrid";
 import { LorePanel } from "@/components/LorePanel";
+import { Thumb } from "@/components/Thumb";
 
+/** Try to infer equipment from details lines like: "🛡️ Chestplate — Heartfire Core: ..." */
 function parseEquipmentFromDetails(details?: string[]) {
   if (!details?.length) return [];
-  // Heuristic: if a line starts with an emoji label like "🛡️ Chestplate — ..." split name/desc
   return details
     .map((line) => {
-      const m = line.match(/^([\p{Emoji_Presentation}\p{Extended_Pictographic}]+)?\s*([^—:-]+)\s*[—:-]\s*(.*)$/u);
+      const m = line.match(
+        /^([\p{Emoji_Presentation}\p{Extended_Pictographic}]+)?\s*([^—:-]+)\s*[—:-]\s*(.*)$/u
+      );
       if (!m) return null;
       const [, , name, desc] = m;
       return { name: name.trim(), desc: desc.trim() };
@@ -26,18 +29,22 @@ export default function ProfileDetail({ params }: { params: { slug: string } }) 
   const p = getProfileBySlug(params.slug) as Profile | undefined;
   if (!p) return notFound();
 
-  // Prefer structured equipment; otherwise try to infer from details
-  const equipment = p.equipment?.length ? p.equipment : parseEquipmentFromDetails(p.details);
-  const lore = p.lore; // optional
+  const equipment = p.equipment?.length
+    ? p.equipment
+    : parseEquipmentFromDetails(p.details);
+
+  const lore = p.lore;
+
+  // Hero display preferences (optional per-profile)
+  const heroRatio = p.hero?.ratio ?? "16/9";
+  const heroFit = p.hero?.fit ?? "cover";
 
   return (
     <article className="space-y-8">
       {/* Header */}
       <header className="flex items-start gap-4">
-        <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-white/10">
-          {/* Small thumbnail (image or video) */}
-          <MediaHero src={p.avatar} alt={p.name} poster={p.poster} />
-        </div>
+        {/* Crisp square thumbnail (image or video) */}
+        <Thumb src={p.avatar} alt={p.name} poster={p.poster} />
         <div className="flex-1">
           <h1 className="text-2xl md:text-3xl font-semibold">{p.name}</h1>
           <p className="text-white/80">{p.title}</p>
@@ -48,8 +55,15 @@ export default function ProfileDetail({ params }: { params: { slug: string } }) 
       {/* Main grid: large hero + side panels */}
       <div className="grid gap-6 md:grid-cols-3">
         <div className="md:col-span-2">
-          {/* Large media hero */}
-          <MediaHero src={p.avatar} alt={p.name} poster={p.poster} />
+          {/* Large hero honors ratio + fit (use "9/16" + "contain" for full portrait view) */}
+          <MediaHero
+            src={p.avatar}
+            alt={p.name}
+            poster={p.poster}
+            ratio={heroRatio}
+            fit={heroFit}
+          />
+
           {/* Equipment below the hero */}
           <div className="mt-6">
             <EquipmentGrid items={equipment} />
@@ -58,12 +72,17 @@ export default function ProfileDetail({ params }: { params: { slug: string } }) 
 
         <div className="md:col-span-1 space-y-6">
           <LorePanel text={lore} />
+
           {p.links?.length ? (
             <section className="space-y-3">
               <h2 className="text-lg font-semibold">Links</h2>
               <div className="flex flex-wrap gap-2">
                 {p.links.map((l, i) => (
-                  <Link key={i} href={l.href} className="rounded-lg border border-white/15 px-3 py-1 text-sm hover:bg-white/10">
+                  <Link
+                    key={i}
+                    href={l.href}
+                    className="rounded-lg border border-white/15 px-3 py-1 text-sm hover:bg-white/10"
+                  >
                     {l.label}
                   </Link>
                 ))}

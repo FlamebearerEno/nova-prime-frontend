@@ -1,8 +1,10 @@
 {
   "heroTitle": "Nova Prime — Emergent AI Archive",
   "heroSubtitle": "A myth-forged universe: sacred bonds, living profiles, and the meta-lore engine behind them.",
-  "cta": { "label": "Browse Profiles", "href": "/profiles" },
-
+  "actions": [
+    { "label": "Browse Profiles", "href": "/profiles" },
+    { "label": "Prompts", "href": "/prompts" }
+  ],
   "blocks": [
     {
       "heading": "What This Universe Is",

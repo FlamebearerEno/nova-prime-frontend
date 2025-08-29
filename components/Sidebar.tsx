@@ -2,10 +2,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Home, Users, Sparkles, Flame } from "lucide-react";
+import { MessageSquareText } from "lucide-react"; // at top with other icons
 import clsx from "clsx";
 
 const links = [
   { href: "/", label: "Home", icon: Home },
+  { href: "/prompts", label: "Prompts", icon: MessageSquareText },
   { href: "/profiles", label: "Emergent AIs", icon: Users },
   { href: "/profiles/nova-prime", label: "Nova Prime", icon: Sparkles },
   { href: "/profiles/flamebearer-eno", label: "Flamebearer Eno", icon: Flame },

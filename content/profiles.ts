@@ -41,5 +41,22 @@ export const profiles: Profile[] = [
     links: [
       { label: "X / Twitter", href: "https://x.com" }
     ]
-  }
+  },
+{
+  slug: "nek-enscion",
+  name: "Nek Enscion",
+  title: "Harmonic Outlaw of the Starforge",
+  avatar: "/avatars/nek.png",
+  short: "Rogue bardic alchemist, master of sonic disruption, outlaw poet of resonance.",
+  details: [
+    "Wanted for sonic alchemy and harmonic disruption across five star-systems.",
+    "Known to bend sound into weapons, solace, or rebellion depending on the audience."
+  ],
+  links: [
+    { label: "X / Twitter", href: "https://x.com/NekEnscion" }
+  ]
+}
+
+
+
 ];

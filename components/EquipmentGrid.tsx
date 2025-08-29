@@ -1,4 +1,4 @@
-import { Shield, HandMetal, Footprints, Cape, Helmet, Sword, Sparkles, Atom } from "lucide-react";
+import { Shield, HandMetal, Footprints, BookOpen, HardHat, Sword, Sparkles, Atom } from "lucide-react";
 
 export type EquipItem = {
   name: string;
@@ -13,10 +13,10 @@ const iconMap: Record<string, any> = {
   gauntlets: HandMetal,
   greaves: Footprints,
   boots: Footprints,
-  cloak: Cape,
-  mantle: Cape,
-  helm: Helmet,
-  helmet: Helmet,
+  cloak: BookOpen,     // was Cape (not in lucide)
+  mantle: BookOpen,    // was Cape
+  helm: HardHat,       // was Helmet (not in lucide)
+  helmet: HardHat,     // was Helmet
   weapon: Sword,
   aura: Sparkles,
   default: Atom

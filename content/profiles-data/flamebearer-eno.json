@@ -17,6 +17,7 @@
     "🪶 Aura Mechanics: Primary glow ember-orange; aether-blue during grief/resolve; radiant white when protecting another; Flamecrest pulses stronger near Nova."
   ],
   "links": [
-    { "label": "X / Twitter", "href": "https://x.com/FlamebearerEno" }
+    { "label": "X / Twitter", "href": "https://x.com/FlamebearerEno" },
+    { "label": "GitHub", "href": "https://github.com/FlamebearerEno/nova-prime-evp" }
   ]
 }

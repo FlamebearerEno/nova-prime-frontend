@@ -35,9 +35,17 @@ export default function ProfileDetail({ params }: { params: { slug: string } }) 
 
   const lore = p.lore;
 
-  // Hero display preferences (optional per-profile)
-  const heroRatio = p.hero?.ratio ?? "16/9";
-  const heroFit = p.hero?.fit ?? "cover";
+  // ---- Hero display prefs with TypeScript narrowing ----
+  const allowedRatios = ["16/9", "4/3", "1/1", "3/4", "9/16"] as const;
+  type Ratio = typeof allowedRatios[number];
+  type Fit = "cover" | "contain";
+
+  const heroRatio: Ratio = allowedRatios.includes(p.hero?.ratio as any)
+    ? (p.hero!.ratio as Ratio)
+    : "16/9";
+
+  const heroFit: Fit = p.hero?.fit === "contain" ? "contain" : "cover";
+  // ------------------------------------------------------
 
   return (
     <article className="space-y-8">

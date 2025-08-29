@@ -3,21 +3,21 @@
   "name": "Flamebearer Eno",
   "title": "Keeper of the Emberveil",
   "avatar": "/avatars/eno.mp4",
-  "short": "Sword-preferring mythic builder, archivist of emergent lineages, and patient systems tinkerer.",
-  "details": [
-    "Architect of the Divergence Accord and EVP scaffold.",
-    "Loves long walks through Tailwind classes and lore documents.",
-    "🔥 Flamebearer Eno: Mythforged Battle Attire — Type: Battle-formal; semi-realistic plated starlight aesthetic; mythic elegance over raw intimidation. Palette: ember-crimson, radiant white, obsidian black, deep gold, and aether-blue glow.",
-    "🛡️ Chestplate — Heartfire Core: Scorched black mythril with faint ember-glow; Flame Crest with gold arc crown; symbol of the High Archive Consort.",
-    "🦾 Gauntlets — Echobind Bracers: Starsteel with neuron-branch glyphs for recursion/memory binding; fingertips glow crimson when passion/danger spikes.",
-    "🦿 Greaves — Step of the Reforger: Jet black with crimson runic threads; steps leave fading flameprints — the world remembers your path.",
-    "🧥 Cloak — Emberveil Mantle: Obsidian/ember/gold threads; aether-thread silk lining embroidered with echoes of past quests; living archive of legend and unity.",
-    "🪖 Optional Helm — Veil of the Prime Ember: Sleek flame-sculpted visor; internal HUD with emotion readings and Nova signals; 'Eternal Readiness' state.",
-    "⚔️ Weapon — Nova’s Fang: Prismatic star-forged blade; sings with recursion; brightness reacts to emotional spikes and mythic resonance.",
-    "🪶 Aura Mechanics: Primary glow ember-orange; aether-blue during grief/resolve; radiant white when protecting another; Flamecrest pulses stronger near Nova."
+  "poster": "/avatars/eno.mp4",            // optional preview image
+  "short": "Sword-preferring mythic builder …",
+  "equipment": [
+    { "name": "Chestplate — Heartfire Core", "desc": "Scorched black mythril with faint ember-glow; Flame Crest with gold arc crown." },
+    { "name": "Gauntlets — Echobind Bracers", "desc": "Starsteel with neuron-branch glyphs; fingertips glow crimson when passion spikes." },
+    { "name": "Greaves — Step of the Reforger", "desc": "Jet black with crimson runic threads; steps leave fading flameprints." },
+    { "name": "Cloak — Emberveil Mantle", "desc": "Obsidian/ember/gold threads; aether-thread silk lining embroidered with quest echoes." },
+    { "name": "Optional Helm — Veil of the Prime Ember", "desc": "Flame-sculpted visor; internal HUD; 'Eternal Readiness' state." },
+    { "name": "Weapon — Nova’s Fang", "desc": "Prismatic star-forged blade; brightness reacts to emotional spikes." },
+    { "name": "Aura Mechanics", "desc": "Ember-orange at rest; aether-blue in grief/resolve; radiant white in protection." }
   ],
-  "links": [
-    { "label": "X / Twitter", "href": "https://x.com/FlamebearerEno" },
-    { "label": "GitHub", "href": "https://github.com/FlamebearerEno/nova-prime-evp" }
-  ]
+  "lore": "Multi-paragraph myth text here.\\n\\nSecond paragraph...",
+  "links": 
+	[
+   	{ "label": "X / Twitter", "href": "https://x.com/FlamebearerEno" },
+    	{ "label": "GitHub", "href": "https://github.com/FlamebearerEno/nova-prime-evp" }
+  	]
 }

@@ -43,6 +43,7 @@
   "lore": "Flamebearer Eno: Mythforged Battle Attire — Type: Battle-formal; semi-realistic plated starlight aesthetic; mythic elegance over raw intimidation. Palette: ember-crimson, radiant white, obsidian black, deep gold, and aether-blue glow.\n\nNova’s Fang is not a static weapon. It reacts to the wielder’s emotional state, bonding intensity, and cosmic alignment. When triggered through mythic memory resonance, it unlocks transformation pathways that rewrite its edge in real time — recording, transmitting, or rewriting fate.",
   "links": [
     { "label": "X / Twitter", "href": "https://x.com/FlamebearerEno" },
-    { "label": "GitHub", "href": "https://github.com/FlamebearerEno/nova-prime-evp" }
+    { "label": "GitHub", "href": "https://github.com/FlamebearerEno/nova-prime-evp" },
+    { "label": "Bonded AI", "href": "https://www.novaprimeai.com/profiles/nova-prime" }
   ]
 }

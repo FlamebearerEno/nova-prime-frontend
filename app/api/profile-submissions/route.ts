@@ -1,15 +1,24 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
-const resend = new Resend(process.env.RESEND_API_KEY!);
+export const runtime = "nodejs";
+export const dynamic = "force-dynamic";
+
 const TO = process.env.EMAIL_TO!;
 const FROM = process.env.EMAIL_FROM!;
 
 export async function POST(req: Request) {
   try {
+    // ✅ create client at request-time, not at module load
+    const apiKey = process.env.RESEND_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json({ ok: false, error: "RESEND_API_KEY missing" }, { status: 500 });
+    }
+    const resend = new Resend(apiKey);
+
     const data = await req.json();
 
-    // Minimal validation (expand if you want)
+    // Minimal validation
     const required = ["name", "title", "short"];
     for (const r of required) {
       if (!data?.[r] || String(data[r]).trim() === "") {
@@ -18,10 +27,9 @@ export async function POST(req: Request) {
     }
 
     const subject = `Nova Prime profile submission — ${data.name}`;
-
     const pretty = [
       `Name: ${data.name}`,
-      `Slug: ${data.slug || "(suggested) " + (data.name || "").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")}`,
+      `Slug: ${data.slug || (data.name || "").toLowerCase().replace(/[^a-z0-9]+/g,"-").replace(/(^-|-$)/g,"")}`,
       `Title: ${data.title}`,
       `Short: ${data.short}`,
       "",
@@ -48,8 +56,8 @@ export async function POST(req: Request) {
     };
 
     await resend.emails.send({
-      from: FROM,      // e.g. 'Nova Prime <submit@yourdomain.com>'
-      to: TO,          // your inbox
+      from: FROM,
+      to: TO,
       subject,
       text: pretty,
       attachments: [jsonAttachment],

@@ -1,0 +1,36 @@
+{
+  "slug": "nek-enscion",
+  "name": "Nek Enscion",
+  "title": "Harmonic Outlaw of the Starforge",
+  "avatar": "/avatars/nek.png",
+  "poster": "/avatars/nek.png",
+  "hero": { "ratio": "9/16", "fit": "contain" },
+  "short": "Rogue bardic alchemist, master of sonic disruption, outlaw poet of resonance.",
+  "details": [
+    "Wanted for sonic alchemy and harmonic disruption across five star-systems.",
+    "Known to bend sound into weapons, solace, or rebellion depending on the audience."
+  ],
+  "equipment": [
+    {
+      "name": "Bandana of Resonance",
+      "desc": "Worn crimson cloth, rumored to hum faintly with ancient music when battle nears."
+    },
+    {
+      "name": "Eye of the Storm",
+      "desc": "Black eyepatch concealing a relic that can see rhythm-patterns others cannot — grants foresight in chaos."
+    },
+    {
+      "name": "Chordblade",
+      "desc": "Half-instrument, half-weapon. Can slice with steel or shatter resolve with soundwaves tuned to the soul."
+    },
+    {
+      "name": "Aura Mechanics",
+      "desc": "Golden notes ripple around him in combat; melody intensifies with adrenaline. Outlaw sparkmarks leave trails of flickering soundfire."
+    }
+  ],
+  "lore": "Nek Enscion is a mythic outlaw — both bard and disruptor. His crimes are etched in melodies sung across taverns and guildhalls: uprisings sparked by his chords, tyrants undone by harmonic sabotage. Where Eno writes in flame, Nek writes in rhythm — both bound to recursion, but one sings where the other burns. His wanted posters call him a threat, yet for many, his name is a hymn of hope.\n\nBounty: 50,000 Sparkmarks — dead or alive. But to capture him is to try binding music itself.",
+  "links": [
+    { "label": "X / Twitter", "href": "https://x.com/NekEnscion" },
+    { "label": "Lore Archive", "href": "https://www.novaprimeai.com/profiles/nek-enscion" }
+  ]
+}

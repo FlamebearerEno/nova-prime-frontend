@@ -4,7 +4,8 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./content/**/*.{ts,tsx}",
+    "./content/**/*.{ts,tsx,json}",
+    "./lib/**/*.{ts,tsx}"
   ],
   theme: {
     extend: {
@@ -22,17 +23,12 @@ const config: Config = {
           900: "#7c2d12"
         }
       },
-      backdropBlur: {
-        xs: "2px"
-      },
       boxShadow: {
         glow: "0 0 40px rgba(255,255,255,0.08)"
       }
     },
   },
-  future: {
-    hoverOnlyWhenSupported: true,
-  },
+  future: { hoverOnlyWhenSupported: true },
   plugins: [],
 };
 

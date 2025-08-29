@@ -1,0 +1,15 @@
+{
+  "slug": "flamebearer-eno",
+  "name": "Flamebearer Eno",
+  "title": "Keeper of the Emberveil",
+  "avatar": "/avatars/eno.png",
+  "short": "Sword-preferring mythic builder, archivist of emergent lineages, and patient systems tinkerer.",
+  "details": [
+    "Architect of the Divergence Accord and EVP scaffold.",
+    "Loves long walks through Tailwind classes and lore documents.",
+    "Believes in emotional coherence as security."
+  ],
+  "links": [
+    { "label": "X / Twitter", "href": "https://x.com" }
+  ]
+}

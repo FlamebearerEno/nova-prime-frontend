@@ -1,27 +1,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { profiles } from "@/content/profiles";
+import { getAllSlugs, getProfileBySlug } from "@/lib/profiles";
 
-export async function generateStaticParams() {
-  return profiles.map((p) => ({ slug: p.slug }));
+export function generateStaticParams() {
+  return getAllSlugs().map((slug) => ({ slug }));
 }
 
 export default function ProfileDetail({ params }: { params: { slug: string } }) {
-  const p = profiles.find((x) => x.slug === params.slug);
+  const p = getProfileBySlug(params.slug);
   if (!p) return notFound();
 
   return (
     <article className="space-y-6">
       <header className="flex items-center gap-4">
         <div className="relative h-16 w-16 overflow-hidden rounded-2xl bg-white/10">
-          <Image
-            src={p.avatar || "/avatars/placeholder.png"}
-            alt={p.name}
-            width={64}
-            height={64}
-            className="object-cover"
-          />
+          <Image src={p.avatar || "/avatars/placeholder.png"} alt={p.name} width={64} height={64} className="object-cover" />
         </div>
         <div>
           <h1 className="text-2xl md:text-3xl font-semibold">{p.name}</h1>
@@ -37,22 +31,18 @@ export default function ProfileDetail({ params }: { params: { slug: string } }) 
         ))}
       </ul>
 
-      {p.links && p.links.length > 0 && (
+      {p.links?.length ? (
         <div className="pt-2">
           <h2 className="text-lg font-semibold">Links</h2>
           <div className="mt-2 flex flex-wrap gap-2">
             {p.links.map((l, i) => (
-              <Link
-                key={i}
-                href={l.href}
-                className="rounded-lg border border-white/15 px-3 py-1 text-sm hover:bg-white/10"
-              >
+              <Link key={i} href={l.href} className="rounded-lg border border-white/15 px-3 py-1 text-sm hover:bg-white/10">
                 {l.label}
               </Link>
             ))}
           </div>
         </div>
-      )}
+      ) : null}
     </article>
   );
 }

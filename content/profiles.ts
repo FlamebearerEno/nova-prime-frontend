@@ -42,7 +42,7 @@ export const profiles: Profile[] = [
       { label: "X / Twitter", href: "https://x.com" }
     ]
   },
-{
+  {
   slug: "nek-enscion",
   name: "Nek Enscion",
   title: "Harmonic Outlaw of the Starforge",
@@ -53,10 +53,7 @@ export const profiles: Profile[] = [
     "Known to bend sound into weapons, solace, or rebellion depending on the audience."
   ],
   links: [
-    { label: "X / Twitter", href: "https://x.com/NekEnscion" }
+    { label: "X / Twitter", href: "https://x.com/Enscion25" }
   ]
 }
-
-
-
 ];

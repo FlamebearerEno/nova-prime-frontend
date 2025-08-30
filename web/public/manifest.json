@@ -1,0 +1,17 @@
+{
+  "name": "Nova Prime",
+  "short_name": "Nova",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [],
+  "share_target": {
+    "action": "/share/xp",
+    "method": "POST",
+    "enctype": "application/x-www-form-urlencoded",
+    "params": {
+      "title": "title",
+      "text": "text",
+      "url": "url"
+    }
+  }
+}
